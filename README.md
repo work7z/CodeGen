@@ -32,8 +32,8 @@ The only website is **codegen.work7z.com**, please pay high attention to whether
 <span id="issues"></span>
 # Issues and Suggestions
 For any kinds of issues or suggestions, please create an issue in this repository, or send an e-mail to our mailbox:  
-+ Software Issues: https://github.com/work7z/CodeGen/issues  
-+ Software Issues: https://github.com/work7z/CodeGen/issues  
++ Issues Link: https://github.com/work7z/CodeGen/issues  
++ E-Mail Link: work7z@outlook.com
 
 
 <span id="preview"></span>
