@@ -16,7 +16,7 @@ Now, we released the Beta version recently, not merely the Windows platform but 
 <span id="download"></span>
 ##  Download 
 + Website Download: https://codegen.work7z.com  
-+ Released Download: https://github.com/work7z/CodeGen/releases 
++ Github Download: https://github.com/work7z/CodeGen/releases 
 
 ### Friendly Reminder
 The only website is **codegen.work7z.com**, please pay high attention to whether the link you are accessing is correct and matches exactly or not.
