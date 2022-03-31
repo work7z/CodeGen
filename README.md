@@ -11,7 +11,7 @@ CodeGen is a secure, high efficiency, and offline-able software, it provides sev
 
 We hope it can save your day from heavy redundant operations and reduce your workload to some extent. Our aim is, to write code more easily by using this software, we promise that we will keep updating its function and putting more useful functions on CodeGen. 
 
-Now, we released the Beta version recently, not merely the Windows platform but OSX(Mac) and Linux(Snap/AppImage) are supported as well. If you would like to experience the software of the Beta version, please refer to the download links in the section below.
+Recently, we just released the Beta version, not merely the Windows platform but OSX(Mac) and Linux(Snap/AppImage) are supported as well. If you would like to experience the software of the Beta version, please refer to the download links in the section below.
 
 <span id="download"></span>
 ##  Download 
