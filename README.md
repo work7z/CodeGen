@@ -46,3 +46,6 @@ For any kinds of issues or suggestions, please create an issue in this repositor
 ![cannot-load-images](https://codegen-prod-release.work7z.com/images/s_10.png)
 ![cannot-load-images](https://codegen-prod-release.work7z.com/images/s_11.png)
 
+
+# About this Repository
+We would like to hear our user's feedbacks and suggestion about the software via this repository on Github, therefore the main purpose of the repository is to solve issues and problems as much as we can. In addition, you can download the latest releases install files via release pages. For any kinds of issues or suggestion, please feel free to contact us, much appreciated.
