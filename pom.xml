@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cc.codegen.client</groupId>
+    <artifactId>CodeGenBoot</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>
+
+    <name>CodeGen Process Manager</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <kotlin.version>1.5.10</kotlin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.79</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>5.8.0.M3</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>cc.codegen.client.CodeGenProcessManager</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.jolira</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <version>1.4.4</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <attachToBuild>true</attachToBuild>
+                            <classifier>onejar</classifier>
+                            <filename>CodeGen-1.3.0.jar</filename>
+                        </configuration>
+                        <goals>
+                            <goal>one-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>com.jolira</groupId>-->
+<!--                <artifactId>onejar-maven-plugin</artifactId>-->
+<!--                <version>1.4.4</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <configuration>-->
+<!--                            <attachToBuild>true</attachToBuild>-->
+<!--                            <classifier>onejar</classifier>-->
+<!--                            <filename>application.jar</filename>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>one-jar</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+
+            <!-- Allows the example to be run via 'mvn camel:run' -->
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
+                <version>3.16.0</version>
+                <configuration>
+                    <logClasspath>true</logClasspath>
+                    <mainClass>org.example.MainApp</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.0</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>testCompile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+
+                <!--                <configuration>-->
+<!--                    <release>1.8</release>-->
+<!--                </configuration>-->
+            </plugin>
+
+
+<!--            <plugin>-->
+<!--                <groupId>com.github.wvengen</groupId>-->
+<!--                <artifactId>proguard-maven-plugin</artifactId>-->
+<!--                <version>2.2.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        &lt;!&ndash; 混淆时刻，这里是打包的时候混淆&ndash;&gt;-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash; 使用插件的什么功能，当然是混淆&ndash;&gt;-->
+<!--                            <goal>proguard</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 是否将生成的PG文件安装部署&ndash;&gt;-->
+<!--                    <attach>true</attach>-->
+
+<!--                    &lt;!&ndash; 是否混淆&ndash;&gt;-->
+<!--                    <obfuscate>true</obfuscate>-->
+
+<!--                    &lt;!&ndash; 指定生成文件分类 &ndash;&gt;-->
+<!--                    <attachArtifactClassifier>pg</attachArtifactClassifier>-->
+<!--                    <options>-->
+<!--                        &lt;!&ndash; JDK目标版本1.8&ndash;&gt;-->
+<!--                        <option>-target 1.8</option>-->
+
+<!--                        &lt;!&ndash; 不做收缩（删除注释、未被引用代码）&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-dontshrink</option>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash; 不做优化（变更代码实现逻辑）&ndash;&gt;-->
+<!--                        <option>-dontoptimize</option>-->
+
+<!--                        &lt;!&ndash;                        <option>-classobfuscationdictionary ./mytest.txt</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-packageobfuscationdictionary ./mytest.txt</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-obfuscationdictionary ./mytest.txt</option>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash; 不路过非公用类文件及成员&ndash;&gt;-->
+<!--                        <option>-dontskipnonpubliclibraryclasses</option>-->
+<!--                        <option>-dontskipnonpubliclibraryclassmembers</option>-->
+
+<!--                        &lt;!&ndash;不用大小写混合类名机制&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                                <option>-dontusemixedcaseclassnames</option>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash; 优化时允许访问并修改有修饰符的类和类的成员 &ndash;&gt;-->
+<!--                        <option>-allowaccessmodification</option>-->
+
+<!--                        &lt;!&ndash; 确定统一的混淆类的成员名称来增加混淆&ndash;&gt;-->
+<!--                        <option>-useuniqueclassmembernames</option>-->
+
+<!--                        <option>-ignorewarnings</option>-->
+
+<!--                        <option>-keepdirectories</option>-->
+
+<!--                        &lt;!&ndash; 不混淆所有包名&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-keeppackagenames</option>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash; 需要保持的属性：异常，注解等&ndash;&gt;-->
+<!--                        <option>-keepattributes-->
+<!--                            Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LocalVariable*Table,*Annotation*,Synthetic,EnclosingMethod-->
+<!--                        </option>-->
+<!--                        &lt;!&ndash; 不混淆所有的set/get方法&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-keepclassmembers public class * {void set*(***);*** get*();}</option>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash; 不混淆包下的所有类名，且类中的方法也不混淆&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-keep class com.xxx.xxx.bboss.SystemConfig { <methods>; }</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<option>-keep class com.xxx.xxx.framework.** { *; }</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<option>-keep class com.xxx.xxx.xxx.controller.** { <methods>; }</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<option>-keep class com.xxx.xxx.xxx.dao.** { <methods>; }</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<option>-keep class com.xxx.xxx.xxx.exception { <methods>; }</option>&ndash;&gt;-->
+<!--                        <option>-keep class org.codehaus.classworlds.** {*;}</option>-->
+<!--                        <option>-keep class cc.codegen.client.CodeGenProcessManager {*;}</option>-->
+<!--                        &lt;!&ndash;                        <option>-keep class com.denote.client.Application {*;}</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>-keepclassmembers class * { &lt;fields&gt;;&lt;methods&gt;; }</option>&ndash;&gt;-->
+<!--                    </options>-->
+
+<!--                    &lt;!&ndash;class 混淆后输出的jar包&ndash;&gt;-->
+<!--                    <outjar>CodeGenBoot.jar</outjar>-->
+
+<!--                    &lt;!&ndash; 添加依赖，这里你可以按你的需要修改，这里测试只需要一个JRE的Runtime包就行了 &ndash;&gt;-->
+<!--                    &lt;!&ndash;<libs>&ndash;&gt;-->
+<!--                    &lt;!&ndash;    <lib>${java.home}/lib/rt.jar</lib>&ndash;&gt;-->
+<!--                    &lt;!&ndash;</libs>&ndash;&gt;-->
+
+<!--                    &lt;!&ndash; 对什么东西进行加载，这里仅有classes成功，毕竟你也不可能对配置文件及JSP混淆吧&ndash;&gt;-->
+<!--                    &lt;!&ndash;<injar>classes</injar>&ndash;&gt;-->
+
+<!--                    &lt;!&ndash; 输出目录&ndash;&gt;-->
+<!--                    &lt;!&ndash;<outputDirectory>${project.build.directory}</outputDirectory>&ndash;&gt;-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+        </plugins>
+    </build>
+
+</project>
