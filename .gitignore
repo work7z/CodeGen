@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+*.class
+*.jar
 
 dll/
 dll

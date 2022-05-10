@@ -1,0 +1,76 @@
+{
+  "listings": [
+    {
+      "label": "PHP",
+      "pid": "code_dto_php"
+    },
+    {
+      "label": "C++",
+      "pid": "code_dto_cpp"
+    },
+    {
+      "label": "Go",
+      "pid": "code_dto_go"
+    },
+    {
+      "label": "Python",
+      "pid": "code_dto_python"
+    },
+    {
+      "label": "C#",
+      "pid": "code_dto_csharp"
+    },
+    {
+      "label": "Java",
+      "pid": "code_dto_java",
+      "group": "JVM"
+    },
+    {
+      "label": "Scala",
+      "pid": "code_dto_scala",
+      "group": "JVM"
+    },
+    {
+      "label": "Kotlin",
+      "pid": "code_dto_kotlin",
+      "group": "JVM"
+    },
+    {
+      "label": "Groovy",
+      "pid": "code_dto_groovy",
+      "group": "JVM"
+    },
+    {
+      "label": "JavaScript",
+      "pid": "code_dto_js",
+      "group": "ecmahelper"
+    },
+    {
+      "label": "TypeScript",
+      "pid": "code_dto_ts",
+      "group": "ecmahelper"
+    },
+    {
+      "label": "CoffeeScript",
+      "pid": "code_dto_coffeescript",
+      "group": "ecmahelper"
+    },
+    {
+      "label": "ES5 Prototype",
+      "pid": "code_dto_es5",
+      "group": "ecmahelper"
+    }
+  ],
+  "groupDefinition": {
+    "JVM": {
+      "label": "JVM",
+      "icon": "code",
+      "pid": "code_dto_jvm_parent"
+    },
+    "ecmahelper": {
+      "icon": "code",
+      "label": "ECMAScript",
+      "pid": "code_dto_ecmahelper_parent"
+    }
+  }
+}
