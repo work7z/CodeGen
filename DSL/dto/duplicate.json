@@ -1,4 +1,21 @@
 {
+  "initialState": {
+    "testing_options": true
+  },
+  "options": {
+    "csharp_namespace": {
+      "formType": "input_text",
+      "helperText": "If this field is empty, CodeGen will generate the file with no declaring namespace information",
+      "label": "Namespace(Optional)",
+      "prop": "gen_config_package"
+    },
+    "java_package": {
+      "formType": "input_text",
+      "label": "Package(Optional)",
+      "prop": "gen_config_package",
+      "helperText": "If this field is empty, CodeGen will generate the file with no declaring package information"
+    }
+  },
   "listings": [
     {
       "label": "PHP",
@@ -18,27 +35,52 @@
     },
     {
       "label": "C#",
-      "pid": "code_dto_csharp"
+      "pid": "code_dto_csharp",
+      "options": [
+        {
+          "id": "csharp_namespace"
+        }
+      ]
     },
     {
       "label": "Java",
       "pid": "code_dto_java",
-      "group": "JVM"
+      "group": "JVM",
+      "options": [
+        {
+          "id": "java_package"
+        }
+      ]
     },
     {
       "label": "Scala",
       "pid": "code_dto_scala",
-      "group": "JVM"
+      "group": "JVM",
+      "options": [
+        {
+          "id": "java_package"
+        }
+      ]
     },
     {
       "label": "Kotlin",
       "pid": "code_dto_kotlin",
-      "group": "JVM"
+      "group": "JVM",
+      "options": [
+        {
+          "id": "java_package"
+        }
+      ]
     },
     {
       "label": "Groovy",
       "pid": "code_dto_groovy",
-      "group": "JVM"
+      "group": "JVM",
+      "options": [
+        {
+          "id": "java_package"
+        }
+      ]
     },
     {
       "label": "JavaScript",
