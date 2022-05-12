@@ -1,4 +1,4 @@
-# CodeGen Efficiency ToolBox
+# CodeGen ToolBox
 
 - <a  href="#intro">Introduce</a>
 - <a  href="#download">Download</a>
@@ -20,21 +20,21 @@ Recently, we just released the Beta version, not merely the Windows platform but
 
 ## Download
 
-- Website Download: https://codegen.work7z.com
+- Website Download: https://codegen.cc
 - Github Download: https://github.com/work7z/CodeGen/releases
 
 ### Friendly Reminder
 
-The only website is **codegen.work7z.com**, please pay high attention to whether the link you are accessing is correct and matches exactly or not.
+The only website is **codegen.cc**, please pay high attention to whether the link you are accessing is correct and matches exactly or not.
 
 <span id="reference"></span>
 
 # References
 
-- Software Blogs: https://codegen.work7z.com/blogs/hist-posted
+- Software Blogs: https://codegen.cc/blogs/hist-posted
 - Software Issues: https://github.com/work7z/CodeGen/issues
-- User Sign-In: https://codegen.work7z.com/user/sign-in
-- User Sign-Up: https://codegen.work7z.com/user/sign-in
+- User Sign-In: https://codegen.cc/user/sign-in
+- User Sign-Up: https://codegen.cc/user/sign-in
 - Contact Developer via E-mail: work7z@outlook.com
 
 <span id="issues"></span>
