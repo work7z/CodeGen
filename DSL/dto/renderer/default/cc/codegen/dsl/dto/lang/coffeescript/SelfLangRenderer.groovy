@@ -1,7 +1,7 @@
 package cc.codegen.dsl.dto.lang.coffeescript
 
-import cc.codegen.dsl.dto.spec.lang.AbstractLangRenderer
+import cc.codegen.dsl.dto.spec.impl.AbstractLangRendererProxy
 
-class SelfLangRenderer extends AbstractLangRenderer {
+class SelfLangRenderer extends AbstractLangRendererProxy {
 
 }

@@ -34,6 +34,7 @@ ${eachField.dataType} ${eachField.name}<#if eachField.defaultValue??> = ${eachFi
         }
     </#if>
 </#compress>
+
 </#if>
 
 }
