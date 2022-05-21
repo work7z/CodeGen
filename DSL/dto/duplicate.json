@@ -1,6 +1,8 @@
 {
   "initialState": {
-    "testing_options": true
+    "testing_options": true,
+    "gen_do_setter": "true",
+    "gen_do_getter": "true"
   },
   "options": {
     "csharp_namespace": {
@@ -14,6 +16,57 @@
       "label": "Package(Optional)",
       "prop": "gen_config_package",
       "helperText": "If this field is empty, CodeGen will generate the file with no declaring package information"
+    },
+    "generating_getter": {
+      "formType": "switch",
+      "label": "Generating Getter Methods",
+      "prop": "gen_do_getter",
+      "helperText": "If you want to generate these getter method code for each field, please turn it on."
+    },
+    "generating_setter": {
+      "formType": "switch",
+      "label": "Generating Setter Methods",
+      "prop": "gen_do_setter",
+      "helperText": "If you want to generate these setter method code for each field, please turn it on."
+    }
+  },
+  "pre_option_definition": {
+    "java": [
+      {
+        "id": "java_package"
+      },
+      {
+        "id": "generating_getter"
+      },
+      {
+        "id": "generating_setter"
+      }
+    ]
+  },
+  "pre_form_definition": {
+    "gen_config_naming_rules": {
+      "list": [
+        {
+          "label": "Auto",
+          "value": "auto"
+        },
+        {
+          "label": "Camel Case Naming Rule",
+          "value": "camel"
+        },
+        {
+          "label": "Hungarian Case Naming Rule",
+          "value": "hungarian"
+        },
+        {
+          "label": "Upper All Characters Case",
+          "value": "upperAll"
+        },
+        {
+          "label": "Lower All Characters Case",
+          "value": "lowerAll"
+        }
+      ]
     }
   },
   "listings": [
@@ -39,6 +92,12 @@
       "options": [
         {
           "id": "csharp_namespace"
+        },
+        {
+          "id": "generating_getter"
+        },
+        {
+          "id": "generating_setter"
         }
       ]
     },
@@ -46,40 +105,40 @@
       "label": "Java",
       "pid": "code_dto_java",
       "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
       "options": [
-        {
-          "id": "java_package"
-        }
       ]
     },
     {
       "label": "Scala",
       "pid": "code_dto_scala",
       "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
       "options": [
-        {
-          "id": "java_package"
-        }
       ]
     },
     {
       "label": "Kotlin",
       "pid": "code_dto_kotlin",
       "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
       "options": [
-        {
-          "id": "java_package"
-        }
       ]
     },
     {
       "label": "Groovy",
       "pid": "code_dto_groovy",
       "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
       "options": [
-        {
-          "id": "java_package"
-        }
       ]
     },
     {
