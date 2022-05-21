@@ -1,12 +1,10 @@
-package cc.codegen.dsl.dto.lang.java
+package cc.codegen.dsl.dto.lang.csharp
 
 import cc.codegen.dsl.dto.connotations.LangRenderer
 import cc.codegen.dsl.dto.mapping.DataType
 import cc.codegen.dsl.dto.spec.impl.AbstractLangRendererProxy
-import cc.codegen.dsl.dto.utils.GenUtils
 import cc.codegen.dsl.dto.vm.InputArgs
 import cc.codegen.dsl.dto.vm.OutputArgs
-import cc.codegen.dsl.dto.vm.output.BaseOutputFile
 import cc.codegen.dsl.dto.vm.output.impl.RelativeOutputFile
 
 @LangRenderer
@@ -16,31 +14,32 @@ class MainLangRenderer extends AbstractLangRendererProxy {
     String convertDataTypeFromGeneralDataType(String generalDataType, String databaseOriginalType) {
         switch (generalDataType) {
             case DataType.GeneralDataType.CG_TYPE_ARRAY:
-                return 'java.util.ArrayList'
+                return 'List'
             case DataType.GeneralDataType.STRING:
-                return 'String';
+                return 'string';
             case DataType.GeneralDataType.TIMESTAMP:
-                return 'java.sql.Timestamp';
+                return 'DateTime';
             case DataType.GeneralDataType.BOOLEAN:
-                return 'Boolean';
+                return 'bool';
             case DataType.GeneralDataType.BYTE_ARR:
-                return 'Byte[]';
+                return 'List <byte>';
             case DataType.GeneralDataType.BIG_DECIMAL:
-                return 'java.math.BigDecimal';
+                return 'decimal';
             case DataType.GeneralDataType.DATE:
-                return 'java.util.Date';
+                return 'Date';
             case DataType.GeneralDataType.OTHER:
                 return 'Object';
             case DataType.GeneralDataType.LONG:
-                return 'Long';
+                return 'long';
             case DataType.GeneralDataType.INTEGER:
-                return 'Integer';
+                return 'int';
         }
-        return 'Object'
+        return 'object'
     }
 
+
     String getCurrentFileExtensionName() {
-        return ".java"
+        return ".cs"
     }
 
     @Override
@@ -49,17 +48,17 @@ class MainLangRenderer extends AbstractLangRendererProxy {
         def fieldName = 'gen_config_package'
         Object pkgGenFolder = getSubFolderFromPkgInfoField(inputArgs, fieldName)
         def clzName = inputArgs.clzBody.clzName
-        return new OutputArgs(inputArgs, [new RelativeOutputFile("${pkgGenFolder}${clzName}.${getCurrentFileExtensionName()}",
+        return new OutputArgs(inputArgs, [new RelativeOutputFile("${pkgGenFolder}${clzName}${getCurrentFileExtensionName()}",
                 "${getCurrentLangFolderName()}/dto.ftl", [:])])
     }
 
     public String getCurrentLangFolderName() {
-        return 'java'
+        return 'csharp'
     }
 
     @Override
     public String getDataTypeStrWhenArrayType(String dataType) {
-        return "${dataType}[]"
+        return "List <${dataType}>"
     }
 
 }

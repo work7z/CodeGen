@@ -10,6 +10,7 @@ import cc.codegen.dsl.dto.vm.clz.ClzBody
 import cc.codegen.dsl.dto.vm.clz.ClzField
 import cc.codegen.dsl.dto.vm.output.BaseOutputFile
 import cc.codegen.dsl.dto.vm.output.impl.RelativeOutputFile
+import cn.hutool.core.util.EscapeUtil
 import cn.hutool.core.util.StrUtil
 import com.alibaba.fastjson.JSONObject
 
@@ -33,9 +34,27 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
         return outputArgs;
     }
 
+    private static boolean isAcronym(String word) {
+        def arr = word.split("")
+        for (int i = 0; i < arr.size(); i++) {
+            def c = arr[i];
+            if (Character.isLowerCase(c.charAt(0))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public abstract String getCurrentFileExtensionName();
 
     public String formattingClzNameByRule(String clzName, InputArgs inputArgs, Map extMaps) {
         def fn_auto_name = { String n ->
+            def isAllUpper = n.toString().split("").find {
+                return StrUtil.isLowerCase(it) && it.matches("[A-Za-z]")
+            } == null
+            if (isAllUpper) {
+                n = n.toLowerCase()
+            }
             if (n.contains("_")) {
                 return upperFirst(StrUtil.toCamelCase(n.toLowerCase()))
             } else {
@@ -82,9 +101,21 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
             it.setGenerateSetter(inputArgs.options['gen_do_setter'] == 'true')
         }
         def gen_generate_source_definition = inputArgs.options['gen_generate_source_definition']
+        def gen_global_comment_with_raw_type = inputArgs.options['gen_global_comment_with_raw_type']
+        def gen_global_comment_with_value_as_example = inputArgs.options['gen_global_comment_with_value_as_example']
         def isDatabaseType = gen_generate_source_definition == 'database';
         def isJsonType = gen_generate_source_definition == 'json';
         clzFields.each {
+            if (gen_global_comment_with_raw_type == 'true') {
+                it.setComment("- DataType: ${it.getDataType()}")
+                it.setShowingComment(true)
+            }
+            if (gen_global_comment_with_value_as_example == 'true') {
+                if (it.getExample() == null || it.getExample().trim() == '') {
+                    it.setExample("[NULL]")
+                }
+                it.setShowingExample(true)
+            }
             def databaseDataType = it.getDataType()
             if (it.isUsingClzType()) {
                 // do nothing here
@@ -115,7 +146,14 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
             RelativeOutputFile relativeOutputFile = (RelativeOutputFile) baseOutputFile;
             def templateName = relativeOutputFile.getTemplateName()
             def subFileName = relativeOutputFile.getSubFileName()
+            def all_in_one = inputArgs.options['gen_config_all_in_one'] == 'yes'
             def outputFile = new File(currentOutputFolder, subFileName)
+            if (all_in_one) {
+                outputFile = new File(
+                        outputFile.getParentFile(),
+                        "AllInOne.${outputFile.getName().split("\\.").last()}"
+                )
+            }
             def dslFolder = new File(extensionMaps['val_DSLFolder'])
             fn_saveLogging("info", "writing to file ${outputFile}", [])
             def strCtn = extensionMaps.fn_callFreemarkerRender([model       : [ipt    : outputArgs.getInputArgs(),
@@ -123,8 +161,10 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
                                                                 templateBase: new File(dslFolder,
                                                                         "dto/templates/base_version"),
                                                                 templateName: templateName,
-                                                                outputFile  : outputFile])
-            fn_saveLogging("info", "[CG_975] Generated Result: \n${strCtn}", [])
+                                                                outputFile  : outputFile,
+                                                                isAppend    : all_in_one,
+            ])
+            fn_saveLogging("info", "[CG_975] Generated Result: \n${EscapeUtil.escapeHtml4(strCtn)}", [])
         }
     }
 
@@ -146,7 +186,7 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
 
     @Override
     String getGeneralDataTypeFromDatabaseOriginType(String DATABASE_ORIGIN_DATATYPE) {
-        switch (DATABASE_ORIGIN_DATATYPE) {
+        switch (DATABASE_ORIGIN_DATATYPE.replaceAll("\\s", "_")) {
             case {
                 it in [DataType.DatabaseOriginalType.CG_TYPE_ARRAY]
             }:

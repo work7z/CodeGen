@@ -8,6 +8,8 @@ class ClzField {
     String comment;
     String example;
     String defaultValue;
+    boolean showingComment=false;
+    boolean showingExample=false;
     boolean usingClzType=false;
     boolean hasArrayCollectionType=false;
     boolean generateGetter=false;
@@ -15,3 +17,4 @@ class ClzField {
     // TODO: new features yet not supported
 //    List<String> enumValue;
 }
+
