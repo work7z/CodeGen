@@ -63,7 +63,7 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
     }
 
     public String formattingFieldVariableNameByRule(String fieldVariableName, InputArgs inputArgs, Map extMaps) {
-        def first = StrUtil.lowerFirst(fieldVariableName)
+        def first = StrUtil.lowerFirst(StrUtil.toCamelCase(fieldVariableName.toLowerCase()))
         return first;
     }
 
@@ -95,10 +95,17 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
                 it.setDataType(factualDataType)
             }
             if (!(it.generalType in [null, ''])) {
+                if (it.name == 'menuitem') {
+                    println "here testing"
+                }
                 println "here"
                 def generalDataType = getGeneralDataTypeFromDatabaseOriginType(it.generalType)
                 def factualDataType = convertDataTypeFromGeneralDataType(generalDataType, it.generalType)
                 def factualDataTypeForGeneralType = factualDataType;
+                if (it.generalType.startsWith("@clz_")) {
+                    it.generalType = it.generalType.replace("@clz_", "")
+                    factualDataTypeForGeneralType = formattingClzNameByRule(it.generalType, inputArgs, [:])
+                }
                 it.setHasArrayCollectionType(true)
                 println "factualDataTypeForGeneralType, ${factualDataTypeForGeneralType}"
                 it.setDataType(getDataTypeStrWhenArrayType(factualDataTypeForGeneralType))
@@ -133,6 +140,7 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
             }
             it.name = formattingFieldVariableNameByRule(it.name, inputArgs, [:]);
         }
+        clzBody.fields = clzFields
     }
 
 
