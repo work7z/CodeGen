@@ -65,6 +65,10 @@
         {
           "label": "Lower All Characters Case",
           "value": "lowerAll"
+        },
+        {
+          "label": "Keep Original Value",
+          "value": "keepOriginalValue"
         }
       ]
     }

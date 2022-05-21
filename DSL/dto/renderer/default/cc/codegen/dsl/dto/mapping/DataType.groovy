@@ -11,9 +11,13 @@ class DataType {
         public static final String BYTE_ARR = "BYTE_ARR"
         public static final String STRING = "STRING"
         public static final String OTHER = "OTHER"
+        public static final String BLOB = "BLOB"
+        public static final String CG_TYPE_ARRAY = "CG_TYPE_ARRAY"
     }
 
     public static class DatabaseOriginalType {
+        // e.g. array type
+        public static final String CG_TYPE_ARRAY = "CG_TYPE_ARRAY"
 // e.g. null
         public static final String CHARACTER_VARYING = "CHARACTER_VARYING"
 // e.g. String
