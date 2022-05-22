@@ -6,7 +6,6 @@ import cc.codegen.dsl.dto.spec.DatabaseLangRenderer
 import cc.codegen.dsl.dto.utils.GenUtils
 import cc.codegen.dsl.dto.vm.InputArgs
 import cc.codegen.dsl.dto.vm.OutputArgs
-import cc.codegen.dsl.dto.vm.clz.ClzBody
 import cc.codegen.dsl.dto.vm.clz.ClzField
 import cc.codegen.dsl.dto.vm.output.BaseOutputFile
 import cc.codegen.dsl.dto.vm.output.impl.RelativeOutputFile
@@ -14,14 +13,15 @@ import cn.hutool.core.util.EscapeUtil
 import cn.hutool.core.util.StrUtil
 import com.alibaba.fastjson.JSONObject
 
-import static cn.hutool.core.util.StrUtil.lowerFirst
-import static cn.hutool.core.util.StrUtil.upperFirst
-import static cn.hutool.core.util.StrUtil.upperFirst
 import static cn.hutool.core.util.StrUtil.upperFirst
 
 //import static cc.codegen.dsl.dto.mapping.DataType.DataType.DatabaseOriginalType
 
 abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
+
+    public String noExplicitDataType(String generalDataType, String databaseOriginalType) {
+        return generalDataType + "(${databaseOriginalType})"
+    }
 
     /**
      * preserved method
@@ -107,7 +107,7 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
         def isJsonType = gen_generate_source_definition == 'json';
         clzFields.each {
             if (gen_global_comment_with_raw_type == 'true') {
-                it.setComment("- DataType: ${it.getDataType()}")
+                it.setComment("\t1. DataType: ${it.getDataType()}")
                 it.setShowingComment(true)
             }
             if (gen_global_comment_with_value_as_example == 'true') {
@@ -149,9 +149,16 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
             def all_in_one = inputArgs.options['gen_config_all_in_one'] == 'yes'
             def outputFile = new File(currentOutputFolder, subFileName)
             if (all_in_one) {
+                def baseSplit = outputFile.getName().split("\\.")
+                def filterSplit = []
+                baseSplit.eachWithIndex { String entry, int ii ->
+//                    if (ii != 0) {
+//                    }
+                    filterSplit.add(entry)
+                }
                 outputFile = new File(
                         outputFile.getParentFile(),
-                        "AllInOne.${outputFile.getName().split("\\.").last()}"
+                        "AllInOne.${filterSplit.subList(1,filterSplit.size()).join(".")}"
                 )
             }
             def dslFolder = new File(extensionMaps['val_DSLFolder'])
