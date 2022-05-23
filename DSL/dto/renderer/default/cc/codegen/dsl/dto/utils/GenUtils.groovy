@@ -3,7 +3,8 @@ package cc.codegen.dsl.dto.utils
 class GenUtils {
 
     public static String getPathJoinChar() {
-        return isWindows() ? "\\" : "/"
+        return "/"
+//        return isWindows() ? "\\\\" : "/"
     }
 
     public static boolean isWindows() {
@@ -14,6 +15,14 @@ class GenUtils {
         boolean windows = s.indexOf("windows") >= 0;
         isWindowCache = windows;
         return windows;
+    }
+
+
+    static String getErrToStr(Throwable throwable) {
+        def writer = new StringWriter()
+        throwable.printStackTrace(new PrintWriter(writer))
+        def fin_err = writer.getBuffer().toString()
+        return fin_err
     }
 
     private static Boolean isWindowCache = null;

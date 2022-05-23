@@ -3,18 +3,25 @@
     "gen_do_setter": "true",
     "gen_do_getter": "true",
     "gen_global_comment_with_raw_type": "true",
-    "gen_global_comment_with_value_as_example": "true"
+    "gen_global_comment_with_value_as_example": "true",
+    "gen_golang_byte_array_definition": "[2048]byte"
   },
   "options": {
+    "go_byte_array": {
+      "formType": "input_text",
+      "helperText": "By default, CodeGen will set 2048 as the initial capacity size of byte array, you can modify it as what you need",
+      "label": "Declaring Byte Array",
+      "prop": "gen_golang_byte_array_definition"
+    },
     "csharp_namespace": {
       "formType": "input_text",
       "helperText": "If this field is empty, CodeGen will generate the file with no declaring namespace information",
-      "label": "Namespace(Optional)",
+      "label": "Namespace",
       "prop": "gen_config_package"
     },
     "java_package": {
       "formType": "input_text",
-      "label": "Package(Optional)",
+      "label": "Package",
       "prop": "gen_config_package",
       "helperText": "If this field is empty, CodeGen will generate the file with no declaring package information"
     },
@@ -105,7 +112,12 @@
     },
     {
       "label": "Go",
-      "pid": "code_dto_go"
+      "pid": "code_dto_go",
+      "options": [
+        {
+          "id": "go_byte_array"
+        }
+      ]
     },
     {
       "label": "Python",

@@ -47,20 +47,30 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
 
     public abstract String getCurrentFileExtensionName();
 
-    public String formattingClzNameByRule(String clzName, InputArgs inputArgs, Map extMaps) {
-        def fn_auto_name = { String n ->
-            def isAllUpper = n.toString().split("").find {
-                return StrUtil.isLowerCase(it) && it.matches("[A-Za-z]")
-            } == null
-            if (isAllUpper) {
-                n = n.toLowerCase()
-            }
-            if (n.contains("_")) {
-                return upperFirst(StrUtil.toCamelCase(n.toLowerCase()))
-            } else {
-                return upperFirst(n)
-            }
+    public boolean isAllUpper(String n) {
+        return n.toString().replaceAll("[^\\w]", "").split("").find {
+            return StrUtil.isLowerCase(it)
+        } == null
+    }
+
+    def fn_auto_name = { String n ->
+        def isAllUpper = isAllUpper(n)
+        if (isAllUpper) {
+            n = n.toLowerCase()
         }
+        def finvalue = null
+        if (n.contains("_")) {
+            finvalue = upperFirst(StrUtil.toCamelCase(n))
+        } else {
+            finvalue = upperFirst(n)
+        }
+        if (n.toLowerCase() == 'glossentry') {
+            println "handling"
+        }
+        return finvalue;
+    }
+
+    public String formattingClzNameByRule(String clzName, InputArgs inputArgs, Map extMaps) {
         def mystr = clzName;
         def gen_config_naming_rules = inputArgs.options['gen_config_naming_rules']
         switch (gen_config_naming_rules) {
@@ -82,7 +92,7 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
     }
 
     public String formattingFieldVariableNameByRule(String fieldVariableName, InputArgs inputArgs, Map extMaps) {
-        def first = StrUtil.lowerFirst(StrUtil.toCamelCase(fieldVariableName.toLowerCase()))
+        def first = StrUtil.lowerFirst(formattingClzNameByRule(fieldVariableName, inputArgs, extMaps))
         return first;
     }
 
@@ -91,87 +101,96 @@ abstract class AbstractLangRendererProxy implements DatabaseLangRenderer {
     }
 
     public void renderByOutputArgs(OutputArgs outputArgs, File currentOutputFolder, Map<String, String> extensionMaps) {
-        // declaring items
         def fn_saveLogging = getSaveLoggingFn(extensionMaps)
-        def inputArgs = outputArgs.inputArgs
-        List<ClzField> clzFields = inputArgs.clzBody.fields
-        // start handling
-        clzFields.each {
-            it.setGenerateGetter(inputArgs.options['gen_do_getter'] == 'true')
-            it.setGenerateSetter(inputArgs.options['gen_do_setter'] == 'true')
-        }
-        def gen_generate_source_definition = inputArgs.options['gen_generate_source_definition']
-        def gen_global_comment_with_raw_type = inputArgs.options['gen_global_comment_with_raw_type']
-        def gen_global_comment_with_value_as_example = inputArgs.options['gen_global_comment_with_value_as_example']
-        def isDatabaseType = gen_generate_source_definition == 'database';
-        def isJsonType = gen_generate_source_definition == 'json';
-        clzFields.each {
-            if (gen_global_comment_with_raw_type == 'true') {
-                it.setComment("\t1. DataType: ${it.getDataType()}")
-                it.setShowingComment(true)
+        try {
+            // declaring items
+            def inputArgs = outputArgs.inputArgs
+            List<ClzField> clzFields = inputArgs.clzBody.fields
+            // start handling
+            clzFields.each {
+                it.setGenerateGetter(inputArgs.options['gen_do_getter'] == 'true')
+                it.setGenerateSetter(inputArgs.options['gen_do_setter'] == 'true')
             }
-            if (gen_global_comment_with_value_as_example == 'true') {
-                if (it.getExample() == null || it.getExample().trim() == '') {
-                    it.setExample("[NULL]")
+            def gen_generate_source_definition = inputArgs.options['gen_generate_source_definition']
+            def gen_global_comment_with_raw_type = inputArgs.options['gen_global_comment_with_raw_type']
+            def gen_global_comment_with_value_as_example = inputArgs.options['gen_global_comment_with_value_as_example']
+            def isDatabaseType = gen_generate_source_definition == 'database';
+            def isJsonType = gen_generate_source_definition == 'json';
+            clzFields.each {
+                if (gen_global_comment_with_raw_type == 'true') {
+                    it.setComment("\t1. DataType: ${it.getDataType()}")
+                    it.setShowingComment(true)
                 }
-                it.setShowingExample(true)
-            }
-            def databaseDataType = it.getDataType()
-            if (it.isUsingClzType()) {
-                // do nothing here
-            } else {
-                def generalDataType = getGeneralDataTypeFromDatabaseOriginType(databaseDataType)
-                def factualDataType = convertDataTypeFromGeneralDataType(generalDataType, databaseDataType)
-                it.setDatabaseDataType(databaseDataType)
-                it.setDataType(factualDataType)
-            }
-            if (!(it.generalType in [null, ''])) {
-                if (it.name == 'menuitem') {
-                    println "here testing"
+                if (gen_global_comment_with_value_as_example == 'true') {
+                    if (it.getExample() == null || it.getExample().trim() == '') {
+                        it.setExample("[NULL]")
+                    }
+                    it.setShowingExample(true)
                 }
-                println "here"
-                def generalDataType = getGeneralDataTypeFromDatabaseOriginType(it.generalType)
-                def factualDataType = convertDataTypeFromGeneralDataType(generalDataType, it.generalType)
-                def factualDataTypeForGeneralType = factualDataType;
-                if (it.generalType.startsWith("@clz_")) {
-                    it.generalType = it.generalType.replace("@clz_", "")
-                    factualDataTypeForGeneralType = formattingClzNameByRule(it.generalType, inputArgs, [:])
+                def databaseDataType = it.getDataType()
+                if (it.isUsingClzType()) {
+                    // do nothing here
+                } else {
+                    def generalDataType = getGeneralDataTypeFromDatabaseOriginType(databaseDataType)
+                    def factualDataType = convertDataTypeFromGeneralDataType(generalDataType, databaseDataType, [
+                            inputArgs: inputArgs
+                    ])
+                    it.setDatabaseDataType(databaseDataType)
+                    it.setDataType(factualDataType)
                 }
-                it.setHasArrayCollectionType(true)
-                println "factualDataTypeForGeneralType, ${factualDataTypeForGeneralType}"
-                it.setDataType(getDataTypeStrWhenArrayType(factualDataTypeForGeneralType))
-            }
-        }
-        outputArgs.getOutputFiles().eachWithIndex { BaseOutputFile baseOutputFile, int i ->
-            RelativeOutputFile relativeOutputFile = (RelativeOutputFile) baseOutputFile;
-            def templateName = relativeOutputFile.getTemplateName()
-            def subFileName = relativeOutputFile.getSubFileName()
-            def all_in_one = inputArgs.options['gen_config_all_in_one'] == 'yes'
-            def outputFile = new File(currentOutputFolder, subFileName)
-            if (all_in_one) {
-                def baseSplit = outputFile.getName().split("\\.")
-                def filterSplit = []
-                baseSplit.eachWithIndex { String entry, int ii ->
-//                    if (ii != 0) {
-//                    }
-                    filterSplit.add(entry)
+                if (!(it.generalType in [null, ''])) {
+                    if (it.name == 'menuitem') {
+                        println "here testing"
+                    }
+                    println "here"
+                    def generalDataType = getGeneralDataTypeFromDatabaseOriginType(it.generalType)
+                    def factualDataType = convertDataTypeFromGeneralDataType(generalDataType, it.generalType, [
+                            inputArgs: inputArgs
+                    ])
+                    def factualDataTypeForGeneralType = factualDataType;
+                    if (it.generalType.startsWith("@clz_")) {
+                        it.generalType = it.generalType.replace("@clz_", "")
+                        factualDataTypeForGeneralType = formattingClzNameByRule(it.generalType, inputArgs, [:])
+                    }
+                    it.setHasArrayCollectionType(true)
+                    println "factualDataTypeForGeneralType, ${factualDataTypeForGeneralType}"
+                    it.setDataType(getDataTypeStrWhenArrayType(factualDataTypeForGeneralType))
                 }
-                outputFile = new File(
-                        outputFile.getParentFile(),
-                        "AllInOne.${filterSplit.subList(1,filterSplit.size()).join(".")}"
-                )
             }
-            def dslFolder = new File(extensionMaps['val_DSLFolder'])
-            fn_saveLogging("info", "writing to file ${outputFile}", [])
-            def strCtn = extensionMaps.fn_callFreemarkerRender([model       : [ipt    : outputArgs.getInputArgs(),
-                                                                               options: outputArgs.getInputArgs().getOptions(),],
-                                                                templateBase: new File(dslFolder,
-                                                                        "dto/templates/base_version"),
-                                                                templateName: templateName,
-                                                                outputFile  : outputFile,
-                                                                isAppend    : all_in_one,
-            ])
-            fn_saveLogging("info", "[CG_975] Generated Result: \n${EscapeUtil.escapeHtml4(strCtn)}", [])
+            outputArgs.getOutputFiles().eachWithIndex { BaseOutputFile baseOutputFile, int i ->
+                RelativeOutputFile relativeOutputFile = (RelativeOutputFile) baseOutputFile;
+                def templateName = relativeOutputFile.getTemplateName()
+                def subFileName = relativeOutputFile.getSubFileName()
+                def all_in_one = inputArgs.options['gen_config_all_in_one'] == 'yes'
+                def outputFile = new File(currentOutputFolder, subFileName)
+                if (all_in_one) {
+                    def baseSplit = outputFile.getName().split("\\.")
+                    def filterSplit = []
+                    baseSplit.eachWithIndex { String entry, int ii ->
+                        filterSplit.add(entry)
+                    }
+                    outputFile = new File(
+                            outputFile.getParentFile(),
+                            "AllInOne.${filterSplit.subList(1, filterSplit.size()).join(".")}"
+                    )
+                }
+                def dslFolder = new File(extensionMaps['val_DSLFolder'])
+                fn_saveLogging("info", "writing to file ${outputFile}", [])
+                def strCtn = extensionMaps.fn_callFreemarkerRender([model       : [ipt    : outputArgs.getInputArgs(),
+                                                                                   options: outputArgs.getInputArgs().getOptions(),],
+                                                                    templateBase: new File(dslFolder,
+                                                                            "dto/templates/base_version"),
+                                                                    templateName: templateName,
+                                                                    outputFile  : outputFile,
+                                                                    isAppend    : all_in_one,
+                ])
+                fn_saveLogging("info", "[CG_975] Generated Result: \n${EscapeUtil.escapeHtml4(strCtn)}", [])
+            }
+        } catch (Throwable throwable) {
+            throwable.printStackTrace()
+            def e_str = GenUtils.getErrToStr(throwable)
+            fn_saveLogging("error", "[CG_975] ${e_str}", [])
+            throw throwable
         }
     }
 

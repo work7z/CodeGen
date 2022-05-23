@@ -1,4 +1,4 @@
-package cc.codegen.dsl.dto.lang.csharp
+package cc.codegen.dsl.dto.lang.go
 
 import cc.codegen.dsl.dto.connotations.LangRenderer
 import cc.codegen.dsl.dto.mapping.DataType
@@ -12,33 +12,34 @@ class MainLangRenderer extends AbstractLangRendererProxy {
 
     @Override
     String convertDataTypeFromGeneralDataType(String generalDataType, String databaseOriginalType, Map extMap) {
+        def inputArgs = extMap['inputArgs'] as InputArgs
         switch (generalDataType) {
             case DataType.GeneralDataType.CG_TYPE_ARRAY:
-                return 'List'
+                return '[]'
             case DataType.GeneralDataType.STRING:
                 return 'string';
             case DataType.GeneralDataType.TIMESTAMP:
-                return 'DateTime';
+                return 'int';
             case DataType.GeneralDataType.BOOLEAN:
                 return 'bool';
             case DataType.GeneralDataType.BYTE_ARR:
-                return 'List <byte>';
+                return inputArgs.options['gen_golang_byte_array_definition'];
             case DataType.GeneralDataType.BIG_DECIMAL:
-                return 'decimal';
+                return 'float64';
             case DataType.GeneralDataType.DATE:
-                return 'Date';
+                return 'int';
             case DataType.GeneralDataType.OTHER:
-                return 'Object';
+                return 'struct';
             case DataType.GeneralDataType.LONG:
-                return 'long';
+                return 'int';
             case DataType.GeneralDataType.INTEGER:
                 return 'int';
         }
-        return 'object'
+        return 'struct'
     }
 
     String getCurrentFileExtensionName() {
-        return ".cs"
+        return ".go"
     }
 
     @Override
@@ -46,18 +47,19 @@ class MainLangRenderer extends AbstractLangRendererProxy {
         super.initBeforeHandling(inputArgs)
         def fieldName = 'gen_config_package'
         Object pkgGenFolder = getSubFolderFromPkgInfoField(inputArgs, fieldName)
+        pkgGenFolder = ""
         def clzName = inputArgs.clzBody.clzName
         return new OutputArgs(inputArgs, [new RelativeOutputFile("${pkgGenFolder}${clzName}${getCurrentFileExtensionName()}",
                 "${getCurrentLangFolderName()}/dto.ftl", [:])])
     }
 
     public String getCurrentLangFolderName() {
-        return 'csharp'
+        return 'go'
     }
 
     @Override
     public String getDataTypeStrWhenArrayType(String dataType) {
-        return "List <${dataType}>"
+        return "[]${dataType}"
     }
 
 }

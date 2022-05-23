@@ -10,7 +10,7 @@ import cc.codegen.dsl.dto.vm.output.impl.RelativeOutputFile
 class MainLangRenderer extends AbstractLangRendererProxy {
 
     @Override
-    String convertDataTypeFromGeneralDataType(String generalDataType, String databaseOriginalType) {
+    String convertDataTypeFromGeneralDataType(String generalDataType, String databaseOriginalType, Map extMap) {
         return noExplicitDataType(generalDataType,databaseOriginalType)
     }
 

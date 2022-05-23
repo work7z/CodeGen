@@ -13,7 +13,7 @@ import cc.codegen.dsl.dto.vm.output.impl.RelativeOutputFile
 class MainLangRenderer extends AbstractLangRendererProxy {
 
     @Override
-    String convertDataTypeFromGeneralDataType(String generalDataType, String databaseOriginalType) {
+    String convertDataTypeFromGeneralDataType(String generalDataType, String databaseOriginalType, Map extMap) {
         switch (generalDataType) {
             case DataType.GeneralDataType.CG_TYPE_ARRAY:
                 return 'java.util.ArrayList'
@@ -49,7 +49,7 @@ class MainLangRenderer extends AbstractLangRendererProxy {
         def fieldName = 'gen_config_package'
         Object pkgGenFolder = getSubFolderFromPkgInfoField(inputArgs, fieldName)
         def clzName = inputArgs.clzBody.clzName
-        return new OutputArgs(inputArgs, [new RelativeOutputFile("${pkgGenFolder}${clzName}.${getCurrentFileExtensionName()}",
+        return new OutputArgs(inputArgs, [new RelativeOutputFile("${pkgGenFolder}${clzName}${getCurrentFileExtensionName()}",
                 "${getCurrentLangFolderName()}/dto.ftl", [:])])
     }
 
