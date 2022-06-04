@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/DSL/dto/renderer/default" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DSL/dto/templates/default/java/default" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/client" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
