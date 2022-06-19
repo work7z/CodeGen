@@ -34,7 +34,7 @@ The only website is **codegen.cc**, please pay high attention to whether the lin
 - Software Blogs: https://codegen.cc/blogs/hist-posted
 - Software Issues: https://github.com/work7z/CodeGen/issues
 - User Sign-In: https://codegen.cc/user/sign-in
-- User Sign-Up: https://codegen.cc/user/sign-in
+- User Sign-Up: https://codegen.cc/user/sign-up
 - Contact Developer via E-mail: work7z@outlook.com
 
 <span id="issues"></span>
