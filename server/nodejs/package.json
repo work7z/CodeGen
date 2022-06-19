@@ -1,0 +1,15 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Related code base is still under organizing.",
+  "main": "index.js",
+  "scripts": {
+    "dev_static": "node ./static_server ./static_server/config/rules.test.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

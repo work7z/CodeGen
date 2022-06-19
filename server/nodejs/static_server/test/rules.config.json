@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "protocol": "http",
+      "listen": "1234",
+      "path": ""
+    },
+    {
+      "protocol": "tcp"
+    }
+  ]
+}
