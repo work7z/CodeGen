@@ -1,0 +1,104 @@
+{
+  "menu": [
+    {
+      "id": "welcome",
+      "type": "md",
+      "label": "Welcome Page"
+    },
+    {
+      "id": "doc",
+      "type": "dir",
+      "label": "Getting Started",
+      "children": [
+        {
+          "id": "installation",
+          "type": "md",
+          "label": "Installation"
+        },
+        {
+          "id": "start_codegen_service",
+          "type": "md",
+          "label": "Start CodeGen Service"
+        },
+        {
+          "id": "stop_codegen_service",
+          "type": "md",
+          "label": "Stop CodeGen Service"
+        },
+        {
+          "id": "supported_platform",
+          "type": "md",
+          "label": "Supported Platform"
+        },
+        {
+          "id": "offline_availability",
+          "type": "md",
+          "label": "Offline Availability"
+        }
+      ]
+    },
+    {
+      "id": "doc",
+      "type": "dir",
+      "label": "Upgrade and Rollback",
+      "children": [
+        {
+          "id": "upgrade_codegen_service",
+          "type": "md",
+          "label": "Upgrade to Latest Version"
+        },
+        {
+          "id": "rollback_codegen_service",
+          "type": "md",
+          "label": "Rollback to Previous Version"
+        },
+        {
+          "id": "our_commitment",
+          "type": "md",
+          "label": "Our Commitment"
+        }
+      ]
+    },
+    {
+      "id": "doc",
+      "type": "dir",
+      "label": "FAQ",
+      "children": [
+        {
+          "id": "contribution",
+          "type": "md",
+          "label": "Contribution"
+        },
+        {
+          "id": "contact_developer",
+          "type": "md",
+          "label": "Contact Developer"
+        }
+      ]
+    },
+    {
+      "id": "doc",
+      "type": "dir",
+      "label": "General Settings",
+      "children": [
+        {
+          "id": "tbc",
+          "type": "md",
+          "label": "To be continued"
+        }
+      ]
+    },
+    {
+      "id": "doc",
+      "type": "dir",
+      "label": "Text Tools",
+      "children": [
+        {
+          "id": "tbc",
+          "type": "md",
+          "label": "To be continued"
+        }
+      ]
+    }
+  ]
+}
