@@ -1,4 +1,4 @@
-# How to Contact Developer?
+### How to Contact Developer?
 
 If you have any question about CodeGen ToolBox, please kindly refer to the contact information as below:
 

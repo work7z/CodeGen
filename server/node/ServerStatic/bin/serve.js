@@ -5,8 +5,8 @@ const http = require('http');
 const https = require('https');
 const path = require('path');
 const fs = require('fs');
-const {promisify} = require('util');
-const {parse} = require('url');
+const { promisify } = require('util');
+const { parse } = require('url');
 const os = require('os');
 
 // Packages
@@ -14,7 +14,7 @@ const Ajv = require('ajv');
 const checkForUpdate = require('update-check');
 const chalk = require('chalk');
 const arg = require('arg');
-const {write: copy} = require('clipboardy');
+const { write: copy } = require('clipboardy');
 const handler = require('serve-handler');
 const schema = require('@zeit/schemas/deployment/config-static');
 const boxen = require('boxen');
@@ -50,7 +50,11 @@ const updateCheck = async (isDebugging) => {
 		return;
 	}
 
-	console.log(`${chalk.bgRed('UPDATE AVAILABLE')} The latest version of \`serve\` is ${update.latest}`);
+	console.log(
+		`${chalk.bgRed(
+			'UPDATE AVAILABLE'
+		)} The latest version of \`serve\` is ${update.latest}`
+	);
 };
 
 const getHelp = () => chalk`
@@ -135,27 +139,29 @@ const parseEndpoint = (str) => {
 	const url = parse(str);
 
 	switch (url.protocol) {
-	case 'pipe:': {
-		// some special handling
-		const cutStr = str.replace(/^pipe:/, '');
+		case 'pipe:': {
+			// some special handling
+			const cutStr = str.replace(/^pipe:/, '');
 
-		if (cutStr.slice(0, 4) !== '\\\\.\\') {
-			throw new Error(`Invalid Windows named pipe endpoint: ${str}`);
+			if (cutStr.slice(0, 4) !== '\\\\.\\') {
+				throw new Error(`Invalid Windows named pipe endpoint: ${str}`);
+			}
+
+			return [cutStr];
 		}
+		case 'unix:':
+			if (!url.pathname) {
+				throw new Error(`Invalid UNIX domain socket endpoint: ${str}`);
+			}
 
-		return [cutStr];
-	}
-	case 'unix:':
-		if (!url.pathname) {
-			throw new Error(`Invalid UNIX domain socket endpoint: ${str}`);
-		}
-
-		return [url.pathname];
-	case 'tcp:':
-		url.port = url.port || '3000';
-		return [parseInt(url.port, 10), url.hostname];
-	default:
-		throw new Error(`Unknown --listen endpoint scheme (protocol): ${url.protocol}`);
+			return [url.pathname];
+		case 'tcp:':
+			url.port = url.port || '3000';
+			return [parseInt(url.port, 10), url.hostname];
+		default:
+			throw new Error(
+				`Unknown --listen endpoint scheme (protocol): ${url.protocol}`
+			);
 	}
 };
 
@@ -177,7 +183,7 @@ const registerShutdown = (fn) => {
 const getNetworkAddress = () => {
 	for (const name of Object.keys(interfaces)) {
 		for (const interface of interfaces[name]) {
-			const {address, family, internal} = interface;
+			const { address, family, internal } = interface;
 			if (family === 'IPv4' && !internal) {
 				return address;
 			}
@@ -186,7 +192,7 @@ const getNetworkAddress = () => {
 };
 
 const startEndpoint = (endpoint, config, args, previous) => {
-	const {isTTY} = process.stdout;
+	const { isTTY } = process.stdout;
 	const clipboard = args['--no-clipboard'] !== true;
 	const compress = args['--no-compression'] !== true;
 	const httpMode = args['--ssl-cert'] && args['--ssl-key'] ? 'https' : 'http';
@@ -198,22 +204,31 @@ const startEndpoint = (endpoint, config, args, previous) => {
 		if (compress) {
 			await compressionHandler(request, response);
 		}
-
+		console.log(JSON.stringify(config));
 		return handler(request, response, config);
 	};
 
 	const sslPass = args['--ssl-pass'];
 
-	const server = httpMode === 'https'
-		? https.createServer({
-			key: fs.readFileSync(args['--ssl-key']),
-			cert: fs.readFileSync(args['--ssl-cert']),
-			passphrase: sslPass ? fs.readFileSync(sslPass) : ''
-		}, serverHandler)
-		: http.createServer(serverHandler);
+	const server =
+		httpMode === 'https'
+			? https.createServer(
+					{
+						key: fs.readFileSync(args['--ssl-key']),
+						cert: fs.readFileSync(args['--ssl-cert']),
+						passphrase: sslPass ? fs.readFileSync(sslPass) : '',
+					},
+					serverHandler
+			  )
+			: http.createServer(serverHandler);
 
 	server.on('error', (err) => {
-		if (err.code === 'EADDRINUSE' && endpoint.length === 1 && !isNaN(endpoint[0]) && args['--no-port-switching'] !== true) {
+		if (
+			err.code === 'EADDRINUSE' &&
+			endpoint.length === 1 &&
+			!isNaN(endpoint[0]) &&
+			args['--no-port-switching'] !== true
+		) {
 			startEndpoint([0], config, args, endpoint[0]);
 			return;
 		}
@@ -232,7 +247,8 @@ const startEndpoint = (endpoint, config, args, previous) => {
 		if (typeof details === 'string') {
 			localAddress = details;
 		} else if (typeof details === 'object' && details.port) {
-			const address = details.address === '::' ? 'localhost' : details.address;
+			const address =
+				details.address === '::' ? 'localhost' : details.address;
 			const ip = getNetworkAddress();
 
 			localAddress = `${httpMode}://${address}:${details.port}`;
@@ -246,31 +262,45 @@ const startEndpoint = (endpoint, config, args, previous) => {
 				const prefix = networkAddress ? '- ' : '';
 				const space = networkAddress ? '            ' : '  ';
 
-				message += `\n\n${chalk.bold(`${prefix}Local:`)}${space}${localAddress}`;
+				message += `\n\n${chalk.bold(
+					`${prefix}Local:`
+				)}${space}${localAddress}`;
 			}
 
 			if (networkAddress) {
-				message += `\n${chalk.bold('- On Your Network:')}  ${networkAddress}`;
+				message += `\n${chalk.bold(
+					'- On Your Network:'
+				)}  ${networkAddress}`;
 			}
 
 			if (previous) {
-				message += chalk.red(`\n\nThis port was picked because ${chalk.underline(previous)} is in use.`);
+				message += chalk.red(
+					`\n\nThis port was picked because ${chalk.underline(
+						previous
+					)} is in use.`
+				);
 			}
 
 			if (clipboard) {
 				try {
 					await copy(localAddress);
-					message += `\n\n${chalk.grey('Copied local address to clipboard!')}`;
+					message += `\n\n${chalk.grey(
+						'Copied local address to clipboard!'
+					)}`;
 				} catch (err) {
-					console.error(error(`Cannot copy to clipboard: ${err.message}`));
+					console.error(
+						error(`Cannot copy to clipboard: ${err.message}`)
+					);
 				}
 			}
 
-			console.log(boxen(message, {
-				padding: 1,
-				borderColor: 'green',
-				margin: 1
-			}));
+			console.log(
+				boxen(message, {
+					padding: 1,
+					borderColor: 'green',
+					margin: 1,
+				})
+			);
 		} else {
 			const suffix = localAddress ? ` at ${localAddress}` : '';
 			console.log(info(`Accepting connections${suffix}`));
@@ -279,11 +309,7 @@ const startEndpoint = (endpoint, config, args, previous) => {
 };
 
 const loadConfig = async (cwd, entry, args) => {
-	const files = [
-		'serve.json',
-		'now.json',
-		'package.json'
-	];
+	const files = ['serve.json', 'now.json', 'package.json'];
 
 	if (args['--config']) {
 		files.unshift(args['--config']);
@@ -302,30 +328,38 @@ const loadConfig = async (cwd, entry, args) => {
 				continue;
 			}
 
-			console.error(error(`Not able to read ${location}: ${err.message}`));
+			console.error(
+				error(`Not able to read ${location}: ${err.message}`)
+			);
 			process.exit(1);
 		}
 
 		try {
 			content = JSON.parse(content);
 		} catch (err) {
-			console.error(error(`Could not parse ${location} as JSON: ${err.message}`));
+			console.error(
+				error(`Could not parse ${location} as JSON: ${err.message}`)
+			);
 			process.exit(1);
 		}
 
 		if (typeof content !== 'object') {
-			console.error(warning(`Didn't find a valid object in ${location}. Skipping...`));
+			console.error(
+				warning(
+					`Didn't find a valid object in ${location}. Skipping...`
+				)
+			);
 			continue;
 		}
 
 		try {
 			switch (file) {
-			case 'now.json':
-				content = content.static;
-				break;
-			case 'package.json':
-				content = content.now.static;
-				break;
+				case 'now.json':
+					content = content.static;
+					break;
+				case 'package.json':
+					content = content.now.static;
+					break;
 			}
 		} catch (err) {
 			continue;
@@ -335,15 +369,22 @@ const loadConfig = async (cwd, entry, args) => {
 		console.log(info(`Discovered configuration in \`${file}\``));
 
 		if (file === 'now.json' || file === 'package.json') {
-			console.error(warning('The config files `now.json` and `package.json` are deprecated. Please use `serve.json`.'));
+			console.error(
+				warning(
+					'The config files `now.json` and `package.json` are deprecated. Please use `serve.json`.'
+				)
+			);
 		}
 
 		break;
 	}
 
 	if (entry) {
-		const {public} = config;
-		config.public = path.relative(cwd, (public ? path.resolve(entry, public) : entry));
+		const { public } = config;
+		config.public = path.relative(
+			cwd,
+			public ? path.resolve(entry, public) : entry
+		);
 	}
 
 	if (Object.keys(config).length !== 0) {
@@ -351,10 +392,14 @@ const loadConfig = async (cwd, entry, args) => {
 		const validateSchema = ajv.compile(schema);
 
 		if (!validateSchema(config)) {
-			const defaultMessage = error('The configuration you provided is wrong:');
-			const {message, params} = validateSchema.errors[0];
+			const defaultMessage = error(
+				'The configuration you provided is wrong:'
+			);
+			const { message, params } = validateSchema.errors[0];
 
-			console.error(`${defaultMessage}\n${message}\n${JSON.stringify(params)}`);
+			console.error(
+				`${defaultMessage}\n${message}\n${JSON.stringify(params)}`
+			);
 			process.exit(1);
 		}
 	}
@@ -396,7 +441,7 @@ const loadConfig = async (cwd, entry, args) => {
 			'-S': '--symlinks',
 			'-C': '--cors',
 			// This is deprecated and only for backwards-compatibility.
-			'-p': '--listen'
+			'-p': '--listen',
 		});
 	} catch (err) {
 		console.error(error(err.message));
@@ -433,14 +478,17 @@ const loadConfig = async (cwd, entry, args) => {
 	const config = await loadConfig(cwd, entry, args);
 
 	if (args['--single']) {
-		const {rewrites} = config;
+		const { rewrites } = config;
 		const existingRewrites = Array.isArray(rewrites) ? rewrites : [];
 
 		// As the first rewrite rule, make `--single` work
-		config.rewrites = [{
-			source: '**',
-			destination: '/index.html'
-		}, ...existingRewrites];
+		config.rewrites = [
+			{
+				source: '**',
+				destination: '/index.html',
+			},
+			...existingRewrites,
+		];
 	}
 
 	if (args['--symlinks']) {

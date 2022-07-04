@@ -1,4 +1,4 @@
-# ${t("How to Contact Developer?")}
+### ${t("How to Contact Developer?")}
 
 ${t('If you have any question about CodeGen ToolBox, please kindly refer to the contact information as below:')}
 

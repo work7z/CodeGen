@@ -1,9 +1,16 @@
 {
   "menu": [
     {
-      "id": "welcome",
-      "type": "md",
-      "label": "Welcome Page"
+      "id": "codegen_toolbox",
+      "type": "dir",
+      "label": "CodeGen ToolBox",
+      "children": [
+        {
+          "id": "welcome",
+          "type": "md",
+          "label": "Welcome Page"
+        }
+      ]
     },
     {
       "id": "doc",
