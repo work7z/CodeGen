@@ -63,6 +63,11 @@
           "id": "our_commitment",
           "type": "md",
           "label": "Our Commitment"
+        },
+        {
+          "id": "manual_migration",
+          "type": "md",
+          "label": "Import/Export Data"
         }
       ]
     },
