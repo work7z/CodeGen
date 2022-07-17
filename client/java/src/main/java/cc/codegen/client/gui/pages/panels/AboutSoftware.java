@@ -33,9 +33,9 @@ public class AboutSoftware extends JPanel {
                         )))
         );
         add((new JLabel("<html><h2>" + t("Basic Information") + "</h2></html>")));
-        add(new JLabel(html(bold(t("Official Website:")) + " https://codegen.cc")));
+        add(new JLabel(html(bold(t("Official Website:")) + " https://cloud.codegen.cc")));
         add(new JLabel(html(bold(t("Portal for CodeGen:")) + " https://portal.codegen.cc")));
-        add(new JLabel(html(bold(t("Docs for CodeGen:")) + " https://codegen.cc/documentation")));
+        add(new JLabel(html(bold(t("Docs for CodeGen:")) + " https://cloud.codegen.cc/documentation")));
         add(new JLabel(html(bold(t("Contact Developer:")) + " work7z@outlook.com")));
         add(new JLabel(html(bold(t("Release an Issue:")) + " https://github.com/work7z/CodeGen/issues")));
         add((new JLabel("<html><h2>" + t("Our Commitment") + "</h2></html>")));

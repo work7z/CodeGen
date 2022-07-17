@@ -6,7 +6,7 @@
 
 如果您使用的是Linux操作系統，請點擊**startup.sh**開始。
 
-![3B815FB66E360B297AD335F47E1C09BF.png](https://codegen.cc/res/3B815FB66E360B297AD335F47E1C09BF.png)
+![3B815FB66E360B297AD335F47E1C09BF.png](https://cloud.codegen.cc/res/3B815FB66E360B297AD335F47E1C09BF.png)
 
 ### 我可以在沒有模式窗口的情況下運行CodeGen服務嗎？
 

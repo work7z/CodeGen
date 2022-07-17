@@ -4,6 +4,6 @@
 
 您可以在旧CodeGen软件的根目录中找到workspaces目录，然后可以将该文件夹复制到新CodeGen工具箱的相应文件夹中。
 
-![2399312216DE030DCB0FD399FA6858F6.png](https://codegen.cc/res/2399312216DE030DCB0FD399FA6858F6.png)
+![2399312216DE030DCB0FD399FA6858F6.png](https://cloud.codegen.cc/res/2399312216DE030DCB0FD399FA6858F6.png)
 
 例如，您可以将codegen-v1.3.x-darwin-arm64/workspaces移动到codegen-v1.4.x-darwin-arm64/workspaces，该文件夹就是您的数据文件夹。

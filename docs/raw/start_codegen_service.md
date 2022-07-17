@@ -6,7 +6,7 @@ ${t("If you are using MacOS operation system, please click {0} to start.",'**sta
 
 ${t("If you are using Linux operation system, please click {0} to start.",'**startup.sh**')}
 
-![3B815FB66E360B297AD335F47E1C09BF.png](https://codegen.cc/res/3B815FB66E360B297AD335F47E1C09BF.png)
+![3B815FB66E360B297AD335F47E1C09BF.png](https://cloud.codegen.cc/res/3B815FB66E360B297AD335F47E1C09BF.png)
 
 ### ${t("Can I run CodeGen service without a modal window?")}
 

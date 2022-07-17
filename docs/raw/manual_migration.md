@@ -4,7 +4,7 @@ ${t("If you encountered an error while upgrade to the latest version, it's proba
 
 ${t("You can find {0} directory in the root level of your old CodeGen software, then you can copy that folder to the corresponding folder of new CodeGen ToolBox. ","workspaces")}
 
-![2399312216DE030DCB0FD399FA6858F6.png](https://codegen.cc/res/2399312216DE030DCB0FD399FA6858F6.png)
+![2399312216DE030DCB0FD399FA6858F6.png](https://cloud.codegen.cc/res/2399312216DE030DCB0FD399FA6858F6.png)
 
 ${t(
 "For instance, you can move codegen-v1.3.x-darwin-arm64/{0} to codegen-v1.4.x-darwin-arm64/{0}, that folder is your data folder.",

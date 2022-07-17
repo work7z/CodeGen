@@ -6,7 +6,7 @@ If you are using MacOS operation system, please click **startup.command** to sta
 
 If you are using Linux operation system, please click **startup.sh** to start.
 
-![3B815FB66E360B297AD335F47E1C09BF.png](https://codegen.cc/res/3B815FB66E360B297AD335F47E1C09BF.png)
+![3B815FB66E360B297AD335F47E1C09BF.png](https://cloud.codegen.cc/res/3B815FB66E360B297AD335F47E1C09BF.png)
 
 ### Can I run CodeGen service without a modal window?
 

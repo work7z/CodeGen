@@ -1,6 +1,6 @@
 ### 如何下载CodeGen
 
-要下载CodeGen工具箱，请先访问我们的官网https://codegen.cc。你会看到有几个选项可以选择来下载它。
+要下载CodeGen工具箱，请先访问我们的官网https://cloud.codegen.cc。你会看到有几个选项可以选择来下载它。
 
 发布版本和预览版本的区别：
 
@@ -12,7 +12,7 @@
 
 (请注意，预览版和发布版之间没有显著差异，预览版只是获得了比发布版更多的最新功能。预览版内部没有未知漏洞或不可用的潜在问题，可直接下载预览版，无需同时下载两个版本。)
 
-![E37146208EA904893DEC03F5F4B1E8BA.png](https://codegen.cc/res/E37146208EA904893DEC03F5F4B1E8BA.png)
+![E37146208EA904893DEC03F5F4B1E8BA.png](https://cloud.codegen.cc/res/E37146208EA904893DEC03F5F4B1E8BA.png)
 
 ### 我可以用我最喜欢的JRE替换集成的JRE吗？
 
@@ -26,7 +26,7 @@
 
 是的，我们已经为您提供了系统引导配置，它名为“system_boot.properties”，位于配置文件夹中。
 
-![667FF767C8841DAC5F139CC78A14A0F9.png](https://codegen.cc/res/667FF767C8841DAC5F139CC78A14A0F9.png)
+![667FF767C8841DAC5F139CC78A14A0F9.png](https://cloud.codegen.cc/res/667FF767C8841DAC5F139CC78A14A0F9.png)
 
 通过修改该配置文件，您可以轻松实现以下目标：
 
@@ -36,7 +36,7 @@
 
 更多选项将尽快添加，敬请关注。
 
-![35584AC596DA04DD404D4148B21C6E3E.png](https://codegen.cc/res/35584AC596DA04DD404D4148B21C6E3E.png)
+![35584AC596DA04DD404D4148B21C6E3E.png](https://cloud.codegen.cc/res/35584AC596DA04DD404D4148B21C6E3E.png)
 
 ### 官方网站
 
@@ -44,7 +44,7 @@
 
 我们已经在Github上发布了它的客户端源代码，了解更多信息请参考以下链接。
 
-- 官方网站: https://codegen.cc
+- 官方网站: https://cloud.codegen.cc
 - GitHub存储库: https://github.com/work7z/CodeGen
 - 联系开发人员: work7z@outlook.com
 
