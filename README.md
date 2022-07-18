@@ -20,7 +20,7 @@ Recently, we just released the Beta version, not merely the Windows platform but
 
 ## Download
 
-- Website Download: https://cloud.codegen.cc
+- Website Download: https://codegen.cc
 - Github Download: https://github.com/work7z/CodeGen/releases
 
 ### Friendly Reminder
@@ -31,10 +31,10 @@ The only website is **codegen.cc**, please pay high attention to whether the lin
 
 # References
 
-- Software Blogs: https://cloud.codegen.cc/blogs/hist-posted
+- Software Blogs: https://codegen.cc/blogs/hist-posted
 - Software Issues: https://github.com/work7z/CodeGen/issues
-- User Sign-In: https://cloud.codegen.cc/user/sign-in
-- User Sign-Up: https://cloud.codegen.cc/user/sign-up
+- User Sign-In: https://codegen.cc/user/sign-in
+- User Sign-Up: https://codegen.cc/user/sign-up
 - Contact Developer via E-mail: work7z@outlook.com
 
 <span id="issues"></span>
