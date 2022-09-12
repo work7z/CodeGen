@@ -1,0 +1,10 @@
+{
+  "name": "browser-esm-webpack",
+  "scripts": {
+    "build": "node ../node_modules/webpack/bin/webpack.js --progress --watch",
+    "build_dist": "node ../node_modules/webpack/bin/webpack.js --progress"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^4.7.4"
+  }
+}
