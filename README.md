@@ -8,7 +8,7 @@
 
 <span id="intro"></span>
 
-## Introduce
+## Introduction
 
 CodeGen is a secure, high efficiency, and offline-able software, it provides several useful functions
 
