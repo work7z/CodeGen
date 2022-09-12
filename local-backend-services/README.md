@@ -1,7 +1,2 @@
-dataSource.setTransactionQueryTimeout(8000)
-dataSource.setPhyTimeoutMillis(300)
-dataSource.setValidationQueryTimeout(300)
-dataSource.setLoginTimeout(300)
-dataSource.setQueryTimeout(300)
-dataSource.setNotFullTimeoutRetryCount(3)
-dataSource.setConnectionErrorRetryAttempts(3)
+# introduction
+this is maven project, which is used for serving the GUI F/E, please install all dependences at first.
