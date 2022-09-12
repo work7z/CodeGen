@@ -1,0 +1,7 @@
+dataSource.setTransactionQueryTimeout(8000)
+dataSource.setPhyTimeoutMillis(300)
+dataSource.setValidationQueryTimeout(300)
+dataSource.setLoginTimeout(300)
+dataSource.setQueryTimeout(300)
+dataSource.setNotFullTimeoutRetryCount(3)
+dataSource.setConnectionErrorRetryAttempts(3)
