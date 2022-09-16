@@ -58,6 +58,5 @@ For any kinds of issues or suggestions, please create an issue in this repositor
 ![cannot-load-images](https://codegen-prod-release.work7z.com/images/s_10.png)
 ![cannot-load-images](https://codegen-prod-release.work7z.com/images/s_11.png)
 
-# About this Repository
-
-We would like to hear our user's feedback and suggestions about the software via this repository on Github, therefore the main purpose of the repository is to solve issues and problems as much as we can. Meanwhile, there are lots of efforts that need to be spent on open-source such as code review, adding the supplementary comments, the prerequisites of local development, scrutinizing latent vulnerable defects, etc... Based on that, I'm afraid that CodeGen would publish its part source code firstly so far, and we will consider publishing its entire source code at the proper time. For any kinds of issues or suggestions, please feel free to contact us, much appreciated.
+# Learn More 
+Regarding further information, please visit our official website.
