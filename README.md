@@ -1,6 +1,6 @@
 # CodeGen ToolBox
 
-- <a  href="#intro">Introduce</a>
+- <a  href="#intro">Introduction</a>
 - <a  href="#download">Download</a>
 - <a  href="#reference">References</a>
 - <a  href="#issues">Issues and Suggestions</a>
