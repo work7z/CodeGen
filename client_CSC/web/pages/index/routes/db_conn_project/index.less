@@ -1,0 +1,31 @@
+@import "../../../../node_modules/@blueprintjs/core/lib/less/variables.less";
+@import "../../vars.less";
+
+@theHeightOfTitle: 34px;
+
+.db_conn_project_title {
+  height: @theHeightOfTitle;
+  line-height: @theHeightOfTitle;
+  background: #ebf1f5;
+  padding: 0 14px;
+}
+
+@theHeightOfFoot: 31px;
+
+.db_conn_project_body {
+  height: calc(~"100% - @{theHeightOfTitle} - @{theHeightOfFoot}");
+  max-height: calc(~"100% - @{theHeightOfTitle} - @{theHeightOfFoot}");
+  overflow: auto;
+  // padding: 5px 11px;
+}
+
+.db_conn_project_foot {
+  border-top: 1px solid #ebf1f5;
+  height: @theHeightOfFoot;
+  box-shadow: 0 -2px 4px 3px #ebf1f533;
+}
+
+.doflex {
+  display: flex;
+  justify-content: space-between;
+}

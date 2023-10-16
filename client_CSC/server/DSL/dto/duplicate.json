@@ -1,0 +1,220 @@
+{
+  "initialState": {
+    "gen_do_setter": "true",
+    "gen_do_getter": "true",
+    "gen_global_comment_with_raw_type": "true",
+    "gen_global_comment_with_value_as_example": "true",
+    "gen_golang_byte_array_definition": "[2048]byte"
+  },
+  "options": {
+    "go_byte_array": {
+      "formType": "input_text",
+      "helperText": "By default, CodeGen will set 2048 as the initial capacity size of byte array, you can modify it as what you need",
+      "label": "Declaring Byte Array",
+      "prop": "gen_golang_byte_array_definition"
+    },
+    "csharp_namespace": {
+      "formType": "input_text",
+      "helperText": "If this field is empty, CodeGen will generate the file with no declaring namespace information",
+      "label": "Namespace",
+      "prop": "gen_config_package"
+    },
+    "java_package": {
+      "formType": "input_text",
+      "label": "Package",
+      "prop": "gen_config_package",
+      "helperText": "If this field is empty, CodeGen will generate the file with no declaring package information"
+    },
+    "generating_getter": {
+      "formType": "switch",
+      "label": "Generating Getter Methods",
+      "prop": "gen_do_getter",
+      "helperText": "If you want to generate these getter method code for each field, please turn it on."
+    },
+    "generating_setter": {
+      "formType": "switch",
+      "label": "Generating Setter Methods",
+      "prop": "gen_do_setter",
+      "helperText": "If you want to generate these setter method code for each field, please turn it on."
+    },
+    "global_comment_with_raw_type": {
+      "formType": "switch",
+      "label": "Adding DataType in Comment",
+      "prop": "gen_global_comment_with_raw_type",
+      "helperText": "If you want to add the original datatype in the descriptive comment for each field, please turn it on."
+    },
+    "global_comment_with_value_as_example": {
+      "formType": "switch",
+      "label": "Adding Example Value in Comment",
+      "prop": "gen_global_comment_with_value_as_example",
+      "helperText": "If you want to add the source value for as the example value of each field, please turn it on."
+    }
+  },
+  "pre_option_definition": {
+    "global_comment": [
+      {
+        "id": "global_comment_with_raw_type"
+      },
+      {
+        "id": "global_comment_with_value_as_example"
+      }
+    ],
+    "java": [
+      {
+        "id": "java_package"
+      },
+      {
+        "id": "generating_getter"
+      },
+      {
+        "id": "generating_setter"
+      }
+    ]
+  },
+  "pre_form_definition": {
+    "gen_config_naming_rules": {
+      "list": [
+        {
+          "label": "Auto",
+          "value": "auto"
+        },
+        {
+          "label": "Camel Case Naming Rule",
+          "value": "camel"
+        },
+        {
+          "label": "Hungarian Case Naming Rule",
+          "value": "hungarian"
+        },
+        {
+          "label": "Upper All Characters Case",
+          "value": "upperAll"
+        },
+        {
+          "label": "Lower All Characters Case",
+          "value": "lowerAll"
+        },
+        {
+          "label": "Keep Original Value",
+          "value": "keepOriginalValue"
+        }
+      ]
+    }
+  },
+  "listings": [
+    {
+      "label": "PHP",
+      "pid": "code_dto_php"
+    },
+    {
+      "label": "C++",
+      "pid": "code_dto_cpp"
+    },
+    {
+      "label": "Go",
+      "pid": "code_dto_go",
+      "options": [
+        {
+          "id": "go_byte_array"
+        }
+      ]
+    },
+    {
+      "label": "Python",
+      "pid": "code_dto_python"
+    },
+    {
+      "label": "C#",
+      "pid": "code_dto_csharp",
+      "options": [
+        {
+          "id": "csharp_namespace"
+        },
+        {
+          "id": "generating_getter"
+        },
+        {
+          "id": "generating_setter"
+        }
+      ]
+    },
+    {
+      "label": "Java",
+      "pid": "code_dto_java",
+      "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
+      "options": [
+      ]
+    },
+    {
+      "label": "Scala",
+      "pid": "code_dto_scala",
+      "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
+      "options": [
+      ]
+    },
+    {
+      "label": "Kotlin",
+      "pid": "code_dto_kotlin",
+      "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
+      "options": [
+      ]
+    },
+    {
+      "label": "Groovy",
+      "pid": "code_dto_groovy",
+      "group": "JVM",
+      "merge_from_definition": [
+        "java"
+      ],
+      "options": [
+      ]
+    },
+    {
+      "label": "JavaScript",
+      "pid": "code_dto_js",
+      "group": "ecmahelper"
+    },
+    {
+      "label": "TypeScript",
+      "pid": "code_dto_ts",
+      "group": "ecmahelper"
+    },
+    {
+      "label": "CoffeeScript",
+      "pid": "code_dto_coffeescript",
+      "group": "ecmahelper"
+    },
+    {
+      "label": "ES5 Prototype",
+      "pid": "code_dto_es5",
+      "group": "ecmahelper"
+    }
+  ],
+  "general_config_obj": {
+    "merge_from_definition": [
+      "global_comment"
+    ],
+    "options": []
+  },
+  "groupDefinition": {
+    "JVM": {
+      "label": "JVM",
+      "icon": "code",
+      "pid": "code_dto_jvm_parent"
+    },
+    "ecmahelper": {
+      "icon": "code",
+      "label": "ECMAScript",
+      "pid": "code_dto_ecmahelper_parent"
+    }
+  }
+}
