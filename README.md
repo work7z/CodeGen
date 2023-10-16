@@ -30,7 +30,7 @@ To get started with CodeGen ToolBox, simply download the software from our websi
 
 ## Contributing
 
-If you have any suggestions or would like to contribute to the development of the software, please feel free to contact us at work7z@outlook.com
+If you have any suggestions or would like to contribute to the development of the portal system(not client), please feel free to contact us at work7z@outlook.com
 
 ## License
 
