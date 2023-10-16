@@ -8,7 +8,7 @@ CodeGen ToolBox is a secure, efficient, and offline-capable software that provid
 
 ## About the Repository
 
-We appreciate your interest in the source code of CodeGen ToolBox. However, at this time, we are not able to open the source code due to the challenges of managing a contribution community and preventing abuse of the source code. We would need sufficient financial support to overcome these challenges before we can consider opening the source code. We appreciate your understanding and support.
+We appreciate your interest in the source code of CodeGen ToolBox. However, at this time, we are not able to open the source code for client due to the challenges of managing a contribution community and preventing abuse of the source code from our rivals. We would need sufficient financial support to overcome these challenges before we can consider opening the source code. We appreciate your understanding and support.
 
 Currently, we are only publishing the latest source code for our online system and part outdated source code for toolbox client. For security and competitive reasons, we are not able to publish the client source code. We appreciate your understanding and support.
 
