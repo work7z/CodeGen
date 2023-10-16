@@ -1,5 +1,13 @@
 # CodeGen ToolBox
 
+## **Icons**
+
+<img src="https://github.com/work7z/CodeGen/blob/master/client_CSC/server/images/b10.png?raw=true" alt="drawing" width="100"/>
+->
+<img src="https://github.com/work7z/CodeGen/blob/master/portal/public/static/icon-portal.png?raw=true" alt="drawing" width="100"/>
+->
+<img src="https://github.com/work7z/CodeGen/blob/master/portal/public/static/icon.png?raw=true" alt="drawing" width="100"/>
+
 CodeGen ToolBox is a secure, efficient, and offline-capable software that provides several useful functions to help reduce your workload and save you time. Our aim is to continuously update and add more useful functions to CodeGen, making coding easier for you.
 
 ## About the Repository
