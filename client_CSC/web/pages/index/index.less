@@ -1,0 +1,44 @@
+@import "../../node_modules/@blueprintjs/core/lib/less/variables";
+@import "~normalize.css";
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "../../node_modules/@blueprintjs/table/lib/css/table.css";
+@import "../../node_modules/@blueprintjs/table/lib/css/table-modern.css";
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: @pt-app-background-color;
+}
+
+.between-anchor {
+  & > * {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.between-anchor-bigger {
+  & > * {
+    margin-right: 9px;
+  }
+}
+
+.modal-100 {
+  z-index: 100;
+}
+
+.modal-200 {
+  z-index: 200;
+}
+
+.modal-300 {
+  z-index: 300;
+}
+
+.modal-400 {
+  z-index: 400;
+}

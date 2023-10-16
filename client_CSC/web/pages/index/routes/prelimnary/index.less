@@ -1,0 +1,52 @@
+@import "../../../../node_modules/@blueprintjs/core/lib/less/variables.less";
+@import "../../vars.less";
+
+.sys-prelimnary-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: #182026;
+  .bp3-panel-stack-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: white;
+  }
+}
+@btlHeight: 51px;
+.docs-panel-stack-example {
+  //   width: 51%;
+  //   height: 75%;
+  width: 734px;
+  height: 597px;
+  //   border: 1px solid #efefef;
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+}
+
+.welcome-preli {
+  h1 {
+    text-align: center;
+  }
+}
+
+.preli-wrap {
+  padding: 10px 21px;
+  //   margin-bottom: 51px;
+  /* flex: 1; */
+  min-height: 516px;
+}
+
+.preli-footer {
+  text-align: right;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: @btlHeight;
+  padding: 0 10px;
+  line-height: 48px;
+  background: white;
+  border-top: 1px solid #d9d9d9;
+}

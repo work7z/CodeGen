@@ -1,0 +1,47 @@
+@import "../../../../node_modules/@blueprintjs/core/lib/less/variables.less";
+@import "../../vars.less";
+
+.main-frame-left-box {
+  // width: @app_menu_left_width;
+  // max-width: @app_menu_left_width;
+  overflow: auto;
+  background-color: @white;
+  border-right: 1px solid @light-gray3;
+}
+
+.system-navigator {
+  padding: 0 10px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-left: 4px solid #2b95d6;
+
+  // transition: all 0.3s;
+  background: white;
+  // &:hover {
+  // background: rgba(191, 204, 214, 0.4);
+  // }
+  button {
+    // background: white !important;
+    // &:hover {
+    //   background: rgba(167, 182, 194, 0.3) !important;
+    // }
+  }
+
+  span.appname {
+    font-weight: bold;
+    color: #2b95d6;
+    // transform: translateX(50%);
+    transform: translateX(44%);
+  }
+  // #2B95D6
+  font-family: inherit;
+
+  // font-weight: 500;
+  // background: linear-gradient(179deg, white, #fbfbfb);
+}

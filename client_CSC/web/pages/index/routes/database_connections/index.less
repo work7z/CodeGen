@@ -1,0 +1,53 @@
+@import "../../../../node_modules/@blueprintjs/core/lib/less/variables.less";
+@import "../../vars.less";
+
+.dblink-page {
+  .control-table-wrapper {
+    // max-height: 50%;
+    overflow: hidden;
+    margin-bottom: 0;
+    .bp3-table-quadrant-scroll-container {
+      height: 330px;
+      max-height: 330px;
+      overflow: auto;
+    }
+  }
+}
+
+.just-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.h100p {
+  height: 100%;
+}
+.dbAllContent {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  .dbEditorView {
+  }
+  .dbDataView {
+    flex: 1;
+  }
+}
+
+.border-for-left-and-right {
+  border: 1px solid #e1e8ed;
+}
+.editor-left-project {
+  .border-for-left-and-right;
+}
+.editor-right-content {
+  .border-for-left-and-right;
+  border-top: none;
+  border-left: none;
+}
+
+.control-tb-view {
+  // border: 1px solid #e1e8ed;
+}
+.dbDataView {
+  border: 1px solid #e1e8ed;
+  border-top: none;
+}

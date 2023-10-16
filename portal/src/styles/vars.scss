@@ -1,0 +1,116 @@
+@import "@blueprintjs/colors/lib/scss/colors";
+
+.pt-10 {
+  padding: 5px;
+}
+.hp100 {
+  height: 100%;
+}
+.wp100 {
+  width: 100%;
+}
+.i-r {
+  text-align: right;
+}
+$tab-height-I-know: 24px;
+@mixin fn-mixin-hover-tab() {
+  &:hover {
+    text-decoration: none;
+    background-color: darken($appNavBgWhite, 10%);
+    .bp5-dark & {
+      background-color: lighten($appNavBgBlack, 10%);
+      &,
+      & * {
+        color: white;
+      }
+    }
+  }
+  &.active {
+    background-color: $turquoise3 !important;
+    color: white !important;
+    .gen-tabs-tab-close {
+      display: block;
+    }
+  }
+}
+
+$appNavBgWhite: white;
+$appNavBgBlack: $dark-gray1;
+$statusbar-height: 28px;
+
+.text-right {
+  display: block;
+  text-align: right;
+}
+.bp5-multistep-dialog-right-panel {
+  display: flex;
+  flex-direction: column;
+  .bp5-dialog-body {
+    flex: 1;
+  }
+  .bp5-dialog-footer {
+  }
+}
+
+.marginauto {
+  margin: auto;
+}
+
+.bp5-bg-light {
+  background-color: $light-gray5;
+}
+
+.flex-parent {
+  display: flex;
+  flex-direction: column;
+  .flex-main-body {
+    flex: 1;
+  }
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
+.ml-8 {
+  margin-left: 8px;
+}
+
+$navbar-height: 50px !default;
+$common-border-color: $gray5 !default;
+
+@mixin fn-border-type($property) {
+  border-#{$property}: 1px solid $gray5;
+  .bp5-dark & {
+    border-#{$property}: 1px solid $dark-gray5;
+  }
+}
+@mixin fn-border-type-all() {
+  @include fn-border-type("left");
+  @include fn-border-type("right");
+  @include fn-border-type("top");
+  @include fn-border-type("bottom");
+}
+@mixin fn-make-bg-color-align() {
+  background-color: $appNavBgWhite;
+  .bp5-dark & {
+    background-color: $appNavBgBlack;
+  }
+}
+
+.btm-border {
+  @include fn-border-type("bottom");
+}
+
+.btm-top {
+  @include fn-border-type("top");
+}
+
+.w100 {
+  width: 100%;
+}
+.h100 {
+  height: 100%;
+}

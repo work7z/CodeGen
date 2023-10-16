@@ -1,0 +1,39 @@
+# CodeGen ToolBox
+
+CodeGen ToolBox is a secure, efficient, and offline-capable software that provides several useful functions to help reduce your workload and save you time. Our aim is to continuously update and add more useful functions to CodeGen, making coding easier for you.
+
+## About the Repository
+
+We appreciate your interest in the source code of CodeGen ToolBox. However, at this time, we are not able to open the source code due to the challenges of managing a contribution community and preventing abuse of the source code. We would need sufficient financial support to overcome these challenges before we can consider opening the source code. We appreciate your understanding and support.
+
+Currently, we are only publishing the latest source code for our online system and part outdated source code for toolbox client. For security and competitive reasons, we are not able to publish the client source code. We appreciate your understanding and support.
+
+Lasstly, closed source code software is often backed by reputable companies or organizations that have a vested interest in maintaining the security and reliability of their software. We are firmly convinced that we can have strict policies and procedures in place to prevent backdoors or other security vulnerabilities.
+
+## How to start?
+
+### start developing portal
+
+```shell
+cd portal && npm run start
+```
+
+### build portal page
+
+```shell
+cd portal && npm run build
+```
+
+## Getting Started
+
+To get started with CodeGen ToolBox, simply download the software from our website at https://codegen.cc. The software is currently available for Windows, OSX(Mac), and Linux(Snap/AppImage).
+
+## Contributing
+
+If you have any suggestions or would like to contribute to the development of the software, please feel free to contact us at work7z@outlook.com
+
+## License
+
+CodeGen ToolBox is licensed under the MIT License. See the LICENSE file for more information.
+
+## Contact

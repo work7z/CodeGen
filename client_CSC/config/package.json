@@ -1,0 +1,63 @@
+{
+  "name": "codegen",
+  "version": "1.0.0",
+  "description": "codegen-preview",
+  "author": "Work7z.com",
+  "main": "main.js",
+  "license": "none",
+  "scripts": {
+    "be_dist": "npm run PRE_BUILD_BACKEND",
+    "PRE_BUILD_BACKEND": "/Users/jerrylai/Sundry/infrastructure/software/apache-maven-3.6.0/bin/mvn clean package -f /Users/jerrylai/Documents/PersonalProjects/denote-be/pom.xml &&  cd /Users/jerrylai/Documents/PersonalProjects/denote-fe/infra && cp /Users/jerrylai/Documents/PersonalProjects/denote-be/target/client-1.0-pg.jar ./client-1.0-pg.jar && rm -rf run-client && mkdir run-client    && cd run-client && cp ../client-1.0-pg.jar . && jar -xvf client-1.0-pg.jar && rm client-1.0-pg.jar",
+    "run_java_demo": "/Users/jerrylai/.codegen_repository/runtime/jdk8u322-b06-jre/Contents/Home/bin/java -cp /Users/jerrylai/Documents/PersonalProjects/denote-be/target/classes -Djava.ext.dirs=/Users/jerrylai/.codegen_repository/core com.denote.client.LightingBoot 18080 prod",
+    "start": "electron .",
+    "web1": "cd web && rm -rf ./dist && npm run dev",
+    "web1_dist": "cd web && rm -rf ./dist && npm run dist",
+    "web2": "cd ./editor/browser-esm && npm run build",
+    "web2_dist": "cd ./editor/browser-esm && npm run build_dist",
+    "web3": "cd dist && serve ./ -l 15000",
+    "package-backup": "electron-packager ./ notes --all --out ./OutApp --overwrite",
+    "package": "electron-packager ./ notes --platform=darwin --out ./OutApp --overwrite",
+    "build": "npm run PRE_BUILD_BACKEND && npm run web2_dist && npm run web1_dist && rm -rf ./dist && electron-builder",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "build": {
+    "appId": "com.work7z.codegen",
+    "asar": false,
+    "files": [
+      "preload.js",
+      "main.js",
+      "images/*",
+      "infra/*",
+      "web/dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    },
+    "publish": null
+  },
+  "devDependencies": {
+    "@blueprintjs/core": "^3.23.0",
+    "electron": "^7.1.8",
+    "electron-packager": "^14.2.0"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.9"
+  },
+  "dependencies": {
+    "@blueprintjs/core": "^3.23.0",
+    "axios": "^0.26.0",
+    "decompress": "^4.2.1",
+    "decompress-targz": "^4.1.1",
+    "decompress-unzip": "^4.0.1",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
+    "node-cmd": "^5.0.0",
+    "node-gzip": "^1.1.2",
+    "node-machine-id": "^1.1.12",
+    "npm-force-resolutions": "0.0.10",
+    "tcp-port-used": "^1.0.2",
+    "unzip": "^0.1.11"
+  }
+}
