@@ -1,6 +1,7 @@
 # CodeGen ToolBox
 
-** Source code will move to the repository, please follow below link! ** 
+**Source code will move to the repository, please follow below link!**   
+源码将在下一个仓库继续开放，请访问以下链接！    
 https://github.com/work7z/LafTools   
 
 (We are excited to announce that our CodeGen ToolBox will rename to LafTools, it is still under development, please kindly stay tuned.) 
