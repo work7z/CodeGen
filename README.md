@@ -1,5 +1,11 @@
 # CodeGen ToolBox
 
+** Source code will move to the repository, please follow below link! ** 
+https://github.com/work7z/LafTools   
+
+(We are excited to announce that our CodeGen ToolBox will rename to LafTools, it is still under development, please kindly stay tuned.) 
+
+
 ## **Icons**
 
 <img src="https://github.com/work7z/CodeGen/blob/master/client_CSC/server/images/b10.png?raw=true" alt="drawing" width="100"/><img src="https://github.com/work7z/CodeGen/blob/master/portal/public/static/icon-portal.png?raw=true" alt="drawing" width="100"/><img src="https://github.com/work7z/CodeGen/blob/master/portal/public/static/icon.png?raw=true" alt="drawing" width="100"/>
