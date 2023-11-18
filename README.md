@@ -12,10 +12,11 @@ Greetings from the CodeGen ToolBox team.
 
 In the midst of this cold winter, we are thrilled to announce that CodeGen ToolBox has released its entire source code and has been renamed to LafTools for a more concise and specific product name. From this point forward, our team will also be known as the LafTools Team.  
 
+
 Despite our software now being fully open source, we remain committed to serving our premium users as before. We are deeply grateful to those who have shown us their unreserved trust and generous support by upgrading to our premium account. Rest assured, your paid services will remain unaffected, and we are continually exploring ways to enhance this product.  
 
 Our decision to completely open our source code was driven by the following reasons::   
-- To invite security inspections 
+- To conduct a security review 
 - To demonstrate the void of malicious logic or backdoors  
 - To welcome contributions from the community 
 - To build a strong reputation and earn trust.  
